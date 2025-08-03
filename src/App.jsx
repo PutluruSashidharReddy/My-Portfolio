@@ -19,7 +19,6 @@ import {
   Send
 } from 'lucide-react';
 
-// Global style for smooth scrolling
 const globalStyles = `
   html {
     scroll-behavior: smooth;
@@ -536,11 +535,6 @@ const Footer = () => (
       <p className="text-sm text-gray-400">
         &copy; {new Date().getFullYear()} {resumeData.name}. All rights reserved.
       </p>
-      <div className="mt-4">
-        <a href="#hero" className="text-sm text-gray-400 hover:text-blue-400 transition-colors duration-300">
-          Back to top
-        </a>
-      </div>
     </div>
   </footer>
 );
