@@ -19,9 +19,6 @@ import {
   Send
 } from 'lucide-react';
 
-import FintrackImage from './Assets/FintrackImage.png'
-import CommunityShowcaseImage from './Assets/CommunityShowcase.png'
-
 // Global style for smooth scrolling
 const globalStyles = `
   html {
@@ -36,7 +33,7 @@ const resumeData = {
     phone: '+91 9392440588',
     email: 'putlurusasidharreddy@gmail.com',
     linkedin: 'https://www.linkedin.com/in/putluru-sashidhar-reddy-5b6110278', 
-    github: 'https://github.com/PutluruSashidharReddy', // Assuming a GitHub URL
+    github: 'https://github.com/PutluruSashidharReddy',
   },
   education: [
     {
@@ -83,7 +80,7 @@ const resumeData = {
       link: 'https://fintrack-application.vercel.app',
       gitRepo: 'https://github.com/PutluruSashidharReddy/FintrackApplication.git',
       icon: <Code />,
-      image: FintrackImage
+      image: 'https://placehold.co/600x400/212a4b/white?text=Fintrack+Screenshot'
     },
     {
       title: 'Community Showcase',
@@ -93,11 +90,11 @@ const resumeData = {
       link: 'https://community-showcase-vijo.vercel.app',
       gitRepo: 'https://github.com/PutluruSashidharReddy/CommunityShowcase.git',
       icon: <Code />,
-      image: CommunityShowcaseImage
+      image: 'https://placehold.co/600x400/212a4b/white?text=Community+Showcase+Screenshot'
     },
   ],
   skills: {
-    languages: ['Java','C', 'C++', 'HTML', 'CSS', 'Javascript', 'SQL'],
+    languages: ['Java', 'C', 'C++', 'HTML', 'CSS', 'Javascript', 'SQL'],
     technologies: ['React JS', 'MongoDB', 'PostgreSQL', 'Node JS', 'Express JS', 'Tailwind CSS'],
     tools: ['Git', 'Github', 'Docker'],
     softSkills: ['Project management', 'Technical Writing', 'Teamwork'],
@@ -164,7 +161,36 @@ const SectionHeader = ({ id, title, icon }) => (
   </motion.div>
 );
 
+// Component for the dark/light theme toggle button
+const ThemeToggle = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
+  useEffect(() => {
+    // Check local storage for theme preference
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialMode = savedTheme ? savedTheme === 'dark' : prefersDark;
+    setIsDarkMode(initialMode);
+    document.documentElement.classList.toggle('dark', initialMode);
+  }, []);
+
+  const toggleTheme = () => {
+    const newMode = !isDarkMode;
+    setIsDarkMode(newMode);
+    localStorage.setItem('theme', newMode ? 'dark' : 'light');
+    document.documentElement.classList.toggle('dark', newMode);
+  };
+
+  return (
+    <button
+      onClick={toggleTheme}
+      className="fixed top-4 right-4 z-50 p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 focus:outline-none"
+      aria-label="Toggle dark mode"
+    >
+      {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
+    </button>
+  );
+};
 
 const HeroSection = () => (
   <motion.header
@@ -540,6 +566,9 @@ const Footer = () => (
         &copy; {new Date().getFullYear()} {resumeData.name}. All rights reserved.
       </p>
       <div className="mt-4">
+        <a href="#hero" className="text-sm text-gray-400 hover:text-blue-400 transition-colors duration-300">
+          Back to top
+        </a>
       </div>
     </div>
   </footer>
@@ -583,6 +612,7 @@ export default function App() {
   return (
     <div className="bg-white dark:bg-gray-950 font-sans text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <style>{globalStyles}</style>
+      <ThemeToggle />
       <main>
         <HeroSection />
         <AboutSection />
