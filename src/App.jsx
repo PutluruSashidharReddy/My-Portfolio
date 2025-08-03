@@ -19,6 +19,9 @@ import {
   Send
 } from 'lucide-react';
 
+import FintrackImage from "./Assets/FintrackImage.png"
+import CommunityShowcaseImage from "./Assets/CommunityShowcase.png"
+
 const globalStyles = `
   html {
     scroll-behavior: smooth;
@@ -79,7 +82,7 @@ const resumeData = {
       link: 'https://fintrack-application.vercel.app',
       gitRepo: 'https://github.com/PutluruSashidharReddy/FintrackApplication.git',
       icon: <Code />,
-      image: 'https://placehold.co/600x400/212a4b/white?text=Fintrack+Screenshot'
+      image: FintrackImage
     },
     {
       title: 'Community Showcase',
@@ -89,7 +92,7 @@ const resumeData = {
       link: 'https://community-showcase-vijo.vercel.app',
       gitRepo: 'https://github.com/PutluruSashidharReddy/CommunityShowcase.git',
       icon: <Code />,
-      image: 'https://placehold.co/600x400/212a4b/white?text=Community+Showcase+Screenshot'
+      image: CommunityShowcaseImage
     },
   ],
   skills: {
