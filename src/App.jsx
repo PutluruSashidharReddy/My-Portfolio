@@ -161,36 +161,7 @@ const SectionHeader = ({ id, title, icon }) => (
   </motion.div>
 );
 
-// Component for the dark/light theme toggle button
-const ThemeToggle = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
-  useEffect(() => {
-    // Check local storage for theme preference
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialMode = savedTheme ? savedTheme === 'dark' : prefersDark;
-    setIsDarkMode(initialMode);
-    document.documentElement.classList.toggle('dark', initialMode);
-  }, []);
-
-  const toggleTheme = () => {
-    const newMode = !isDarkMode;
-    setIsDarkMode(newMode);
-    localStorage.setItem('theme', newMode ? 'dark' : 'light');
-    document.documentElement.classList.toggle('dark', newMode);
-  };
-
-  return (
-    <button
-      onClick={toggleTheme}
-      className="fixed top-4 right-4 z-50 p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 focus:outline-none"
-      aria-label="Toggle dark mode"
-    >
-      {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
-    </button>
-  );
-};
 
 const HeroSection = () => (
   <motion.header
@@ -612,7 +583,6 @@ export default function App() {
   return (
     <div className="bg-white dark:bg-gray-950 font-sans text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <style>{globalStyles}</style>
-      <ThemeToggle />
       <main>
         <HeroSection />
         <AboutSection />
